@@ -1,0 +1,64 @@
+<div class="justify-content-center align-items-center">
+    <h2 class="text-center">Add New Project</h2>
+    <div class="container">
+        <form novalidate [formGroup]='AddProjectForm' (ngSubmit)='AddProject()' class=" bg-white rounded shadow-lg">
+            <div class="row p-5">
+                <mat-form-field class="example-full-width col-12 my-2" appearance="outline">
+                    <mat-label> Title</mat-label>
+                    <input type="text" matInput formControlName="Title" placeholder=" Write here ... ">
+                    <mat-error *ngIf="FormControls.Title.hasError( 'required') ">
+                        <strong>reqired *</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width col-12 my-2" appearance="outline">
+                    <mat-label> Github Link</mat-label>
+                    <input type="text" matInput formControlName="GithubLink" placeholder=" Write here ... ">
+                    <mat-error *ngIf="FormControls.GithubLink.hasError( 'required') ">
+                        <strong>reqired *</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width col-12 my-2" appearance="outline">
+                    <mat-label> Url</mat-label>
+                    <input type="text" matInput formControlName="Url" placeholder="(optional) Write here ... ">
+
+                </mat-form-field>
+
+
+                <mat-form-field class="example-full-width col-12 my-2" appearance="outline">
+                    <mat-label>Choose a Deadline</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="DeadlineDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="FormControls.DeadlineDate.hasError( 'required') ">
+                        <strong>reqired *</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="example-full-width col-12 my-2">
+                    <label id="example-radio-group-label">Priority : </label>
+                    <mat-radio-group color="primary" formControlName="Priority" aria-labelledby="example-radio-group-label" aria-label="Select an option" appearance="outline">
+                        <mat-radio-button class="mx-2" value="High">High</mat-radio-button>
+                        <mat-radio-button class="mx-2" value="Meduim">Meduim</mat-radio-button>
+                        <mat-radio-button class="mx-2" value="Low">Low</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+
+
+                <mat-form-field class="example-full-width col-12 my-2" appearance="outline">
+                    <mat-label> Describtion</mat-label>
+                    <textarea type="text" matInput formControlName="Describtion" placeholder=" Write here ... " rows="3"></textarea>
+                    <mat-error *ngIf="FormControls.Describtion.hasError( 'required') ">
+                        <strong>reqired *</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="col-12 mt-5 text-center">
+                    <button class="btn btn-primary mx-3" type="submit" [disabled]="!AddProjectForm.valid">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

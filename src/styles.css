@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* @import '~font-awesome/css/font-awesome.css'; */
+
+
+/* @import '~@fortawesome/fontawesome-free/scss/fontawesome'; */
+
+
+/* @import "~font-awesome/css/font-awesome.css"; */
+
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.priority {
+    /* font-weight: lighter; */
+    font-size: 10px;
+}
+
+.priority span {
+    font-weight: bold !important;
+    margin-right: 5px;
+}
+
+.priority .high {
+    background-color: #f06a6a;
+    color: #1e1f21;
+    padding: 5px;
+}
+
+.priority .meduim {
+    background-color: #ec8d71;
+    color: #1e1f21;
+    padding: 5px;
+}
+
+.priority .low {
+    background-color: #5da283;
+    color: #1e1f21;
+    padding: 5px;
+}

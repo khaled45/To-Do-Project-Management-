@@ -1,0 +1,10 @@
+.active:focus {
+    font-weight: bold;
+    color: #f4a261;
+}
+
+.active {
+    padding: 15px;
+    font-weight: 100;
+    color: gray;
+}

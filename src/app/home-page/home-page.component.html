@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div [ngSwitch]="todo?.length>0 ||InProcess?.length>0||done?.length>0">
+        <div *ngSwitchCase="true" class="row">
+            <div cdkDropListGroup class="container-fluid justify-content-center">
+                <div class="row">
+                    <div class="example-container col-xl-4 col-md-4 col-12">
+                        <h2>To Do</h2>
+                        <div cdkDropList [cdkDropListData]="todo" class="example-list shadow-lg" (cdkDropListDropped)="drop($event)">
+                            <mat-card class="example-card shadow-lg border-bottom border-5" *ngFor="let item of todo" cdkDrag>
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <mat-card-title>{{item.Title}}</mat-card-title>
+                                <mat-card-subtitle class="pt-2">
+                                    <p class="text-muted">
+                                        <a class="mx-1" [href]="item.GithubLink" target="_blank"><i class="fab fa-github"></i></a>
+                                        <a class="mx-1" [href]="item.Url" target="_blank"><i class="fas fa-link"></i></a>
+                                    </p>
+                                    <p class="priority"> <span>Due date:</span> {{item.CreatedOn|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Deadline:</span> {{item.DeadlineDate|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Priority:</span>
+                                        <span class="high rounded-pill" *ngIf="item.Priority == 'High'">{{item.Priority}}</span>
+                                        <span class="meduim rounded-pill" *ngIf="item.Priority == 'Meduim'">{{item.Priority}}</span>
+                                        <span class="low rounded-pill" *ngIf="item.Priority == 'Low'">{{item.Priority}}</span>
+                                    </p>
+                                </mat-card-subtitle>
+                                <mat-card-content>
+                                    <p>
+                                        <strong class="px-1">"</strong>
+                                        <samp>{{item.Describtion }}</samp>
+                                        <strong class="px-1">"</strong>
+
+                                    </p>
+                                </mat-card-content>
+                                <mat-card-actions align="end">
+                                    <button class="btn btn-danger mx-2" (click)="Remove(item.id,'todo')"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-primary mx-2" (click)="UpdateDialog(item , 'todo')"><i class="fas fa-pen"></i></button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                    <div class="example-container col-xl-4 col-md-4 col-12">
+                        <h2>In Process</h2>
+
+                        <div cdkDropList [cdkDropListData]="InProcess" class="example-list shadow-lg" (cdkDropListDropped)="drop($event)">
+                            <mat-card class="example-card shadow-lg border-bottom border-5" *ngFor="let item of InProcess" cdkDrag>
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <mat-card-title>{{item.Title}}</mat-card-title>
+                                <mat-card-subtitle class="pt-2">
+                                    <p class="text-muted">
+                                        <a class="mx-1" [href]="item.GithubLink" target="_blank"><i class="fab fa-github"></i></a>
+                                        <a class="mx-1" [href]="item.Url" target="_blank"><i class="fas fa-link"></i></a>
+                                    </p>
+                                    <p class="priority"> <span>Due date:</span> {{item.CreatedOn|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Deadline:</span> {{item.DeadlineDate|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Priority:</span>
+                                        <span class="high rounded-pill" *ngIf="item.Priority == 'High'">{{item.Priority}}</span>
+                                        <span class="meduim rounded-pill" *ngIf="item.Priority == 'Meduim'">{{item.Priority}}</span>
+                                        <span class="low rounded-pill" *ngIf="item.Priority == 'Low'">{{item.Priority}}</span>
+                                    </p>
+
+                                </mat-card-subtitle>
+                                <mat-card-content>
+                                    <p>
+                                        <strong class="px-1">"</strong>
+                                        <samp>{{item.Describtion }}</samp>
+                                        <strong class="px-1">"</strong>
+
+                                    </p>
+                                </mat-card-content>
+                                <mat-card-actions align="end">
+                                    <button class="btn btn-danger mx-2" (click)="Remove(item.id,'inprocess')"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-primary mx-2" (click)="UpdateDialog(item , 'inprocess')"><i class="fas fa-pen"></i></button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                    <div class="example-container col-xl-4 col-md-4 col-12">
+                        <h2>Done</h2>
+
+                        <div cdkDropList [cdkDropListData]="done" class="example-list shadow-lg" (cdkDropListDropped)="drop($event)">
+                            <mat-card class="example-card shadow-lg border-bottom border-5" *ngFor="let item of done" cdkDrag>
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                                <mat-card-title>{{item.Title}}</mat-card-title>
+                                <mat-card-subtitle class="pt-2">
+                                    <p class="text-muted">
+                                        <a class="mx-1" [href]="item.GithubLink" target="_blank"><i class="fab fa-github"></i></a>
+                                        <a class="mx-1" [href]="item.Url" target="_blank"><i class="fas fa-link"></i></a>
+                                    </p>
+                                    <p class="priority"> <span>Due date:</span> {{item.CreatedOn|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Deadline:</span> {{item.DeadlineDate|date:"dd-MM-yyyy"}}</p>
+                                    <p class="priority"><span>Priority:</span>
+                                        <span class="high rounded-pill" *ngIf="item.Priority == 'High'">{{item.Priority}}</span>
+                                        <span class="meduim rounded-pill" *ngIf="item.Priority == 'Meduim'">{{item.Priority}}</span>
+                                        <span class="low rounded-pill" *ngIf="item.Priority == 'Low'">{{item.Priority}}</span>
+                                    </p>
+                                </mat-card-subtitle>
+                                <mat-card-content>
+                                    <p>
+                                        <strong class="px-1">"</strong>
+                                        <samp>{{item.Describtion }}</samp>
+                                        <strong class="px-1">"</strong>
+
+                                    </p>
+                                </mat-card-content>
+                                <mat-card-actions align="end">
+                                    <button class="btn btn-danger mx-2" (click)="Remove(item.id,'done')"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-primary mx-2" (click)="UpdateDialog(item , 'done')"><i class="fas fa-pen"></i></button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div *ngSwitchCase="false" class="row">
+
+            <div class="justigfy-content-center align-items-center text-center">
+                <h1>No Projects Yet</h1>
+                <button class="btn btn-primary" [routerLink]="['/AddProject']" routerLinkActive="router-link-active"> ِAdd New Project</button>
+            </div>
+        </div>
+    </div>
+</div>
